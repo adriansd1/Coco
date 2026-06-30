@@ -51,3 +51,83 @@ The project is being designed from the ground up with extensibility, modularity,
 * Team collaboration
 * Cross-device configuration syncing
 * Community plugin ecosystem
+
+## Architecture
+
+**Coco** follow a "one engine, many interfaces" architecture.
+```mermaid
+graph TD
+    User --> CLI
+    User --> GUI
+    CLI --> COCO_Core
+    GUI --> COCO_Core
+    COCO_Core --> Commands
+    COCO_Core --> Workflows
+    COCO_Core --> Plugins
+    Commands --> System_Services
+    Workflows --> System_Services
+    Plugins --> System_Services
+    System_Services --> Operating_System
+```
+All business logic lives inside the core engine.
+
+The CLI, desktop application, and any future APIs simply communicate with the engine.
+
+## Project Structure
+```text
+coco/
+│
+├── docs/
+├── coco-cli/
+├── coco-core/
+├── coco-plugin-api/
+├── coco-gui/
+├── coco-plugins/
+├── examples/
+├── build.gradle
+├── settings.gradle
+└── README.md
+```
+
+## Project Principles
+The following principles guide every architectural decision made throughout the project.
+* One engine powers every interface.
+* Business logic never belongs in the user interface.
+* Automation should simplify existing workflows rather than replace existing tools.
+* Features should be modular and easily extensible.
+* Cross-platform compatibility is a first-class requirement.
+* AI enhances the platform but is never required to use it.
+* Simplicity is preferred over unnecessary complexity.
+
+## Roadmap
+### Version 0.1
+* Command framework
+* System diagnostics
+* Project detection
+* Intelligent command execution
+* Basic workflow engine
+### Version 0.2
+* Plugin system
+* Configuration management
+* Workflow improvements
+* Project templates
+### Version 0.3
+* Desktop application
+* File management tools
+* Productivity features
+### Version 0.4
+* AI integrations
+* Cloud synchronization
+* Marketplace
+* Team features
+
+## Contributing
+
+**Coco** is being developed as a long-term open-source platform.
+
+Before contributing, please review the documentation contained within the docs/ directory. Every major architectural decision is documented to ensure the project remains consistent as it grows.
+
+---
+**Coco**
+
+*Build once. Automate everything.*
